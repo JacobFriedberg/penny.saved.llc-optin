@@ -15,6 +15,12 @@
       justify-content: center;
       align-items: center;
       height: 100vh;
+      flex-direction: column;
+    }
+
+    .logo {
+      width: 160px;
+      margin-bottom: 20px;
     }
 
     .container {
@@ -77,36 +83,39 @@
   </style>
 </head>
 <body>
+  <img class="logo" src="https://pennysavedllcsmsoptinconsent.vercel.app/logo.png" alt="Penny Saved LLC Logo">
+
   <div class="container">
- <h1>Penny Saved LLC – SMS Opt-In Consent</h1>
+    <h1>Penny Saved LLC – SMS Opt-In Consent</h1>
 
-  <p class="disclosure">
-    By submitting this form, you consent to receive recurring text messages from Penny Saved LLC regarding your account and investing activity. Message frequency may vary. Message and data rates may apply. Text STOP to unsubscribe at any time.
-  </p>
-
-  <form id="optin-form" action="#" method="POST">
-    <div class="form-group">
-      <label for="phone">Phone Number:</label>
-      <input type="tel" id="phone" name="phone" placeholder="+1 (555) 555-5555" required pattern="^\+?\d{10,15}$">
-    </div>
-
-    <div class="form-group">
-      <label>
-        <input type="checkbox" id="consentCheckbox" required>
-        I agree to receive recurring SMS messages from Penny Saved LLC. Message frequency may vary. Message and data rates may apply. Reply STOP to unsubscribe.
-      </label>
-    </div>
-
-    <p>Read our <a href="https://jacobfriedberg.github.io/pennysaved-privacypolicy-terms-conditions" target="_blank">Privacy Policy & Terms</a>.</p>
-
-    <button type="submit" id="submitBtn" disabled>I Agree</button>
-
-    <p id="confirmationMessage" class="confirmation">
-      ✅ Consent recorded for <span id="confirmedPhone"></span> at <span id="confirmedTime"></span>.
+    <p class="disclosure">
+      By submitting this form, you consent to receive recurring text messages from Penny Saved LLC regarding your account and investing activity. Message frequency may vary. Message and data rates may apply. Text STOP to unsubscribe at any time.
     </p>
 
-    <p id="timestamp" style="font-size: 0.9em; color: #666; margin-top: 2em;"></p>
-  </form>
+    <form id="optin-form" action="#" method="POST">
+      <div class="form-group">
+        <label for="phone">Phone Number:</label>
+        <input type="tel" id="phone" name="phone" placeholder="+1 (555) 555-5555" required pattern="^\+?\d{10,15}$">
+      </div>
+
+      <div class="form-group">
+        <label>
+          <input type="checkbox" id="consentCheckbox" required>
+          I agree to receive recurring SMS messages from Penny Saved LLC. Message frequency may vary. Message and data rates may apply. Reply STOP to unsubscribe.
+        </label>
+      </div>
+
+      <p>Read our <a href="https://jacobfriedberg.github.io/pennysaved-privacypolicy-terms-conditions" target="_blank">Privacy Policy & Terms</a>.</p>
+
+      <button type="submit" id="submitBtn" class="button" disabled>I Agree</button>
+
+      <p id="confirmationMessage" class="confirmation">
+        ✅ Consent recorded for <span id="confirmedPhone"></span> at <span id="confirmedTime"></span>.
+      </p>
+
+      <p id="timestamp" style="font-size: 0.9em; color: #888; margin-top: 2em;"></p>
+    </form>
+  </div>
 
   <script>
     const checkbox = document.getElementById('consentCheckbox');
