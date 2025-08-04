@@ -78,32 +78,60 @@
 </head>
 <body>
   <div class="container">
-    <h1>Penny Saved LLC – SMS Opt-In Consent</h1>
-    <p>
-      By checking the box below and clicking “I Agree,” you consent to receive recurring SMS messages
-      from Penny Saved LLC about your investments and account status. Message frequency varies. Message
-      and data rates may apply. Reply STOP to unsubscribe.
+ <h1>Penny Saved LLC – SMS Opt-In Consent</h1>
+
+  <p class="disclosure">
+    By submitting this form, you consent to receive recurring text messages from Penny Saved LLC regarding your account and investing activity. Message frequency may vary. Message and data rates may apply. Text STOP to unsubscribe at any time.
+  </p>
+
+  <form id="optin-form" action="#" method="POST">
+    <div class="form-group">
+      <label for="phone">Phone Number:</label>
+      <input type="tel" id="phone" name="phone" placeholder="+1 (555) 555-5555" required pattern="^\+?\d{10,15}$">
+    </div>
+
+    <div class="form-group">
+      <label>
+        <input type="checkbox" id="consentCheckbox" required>
+        I agree to receive recurring SMS messages from Penny Saved LLC. Message frequency may vary. Message and data rates may apply. Reply STOP to unsubscribe.
+      </label>
+    </div>
+
+    <p>Read our <a href="https://jacobfriedberg.github.io/pennysaved-privacypolicy-terms-conditions" target="_blank">Privacy Policy & Terms</a>.</p>
+
+    <button type="submit" id="submitBtn" disabled>I Agree</button>
+
+    <p id="confirmationMessage" class="confirmation">
+      ✅ Consent recorded for <span id="confirmedPhone"></span> at <span id="confirmedTime"></span>.
     </p>
-    <label>
-      <input type="checkbox" id="consentCheckbox">
-      I agree to receive recurring SMS messages from Penny Saved LLC. Message and data rates may apply. Reply STOP to unsubscribe.
-    </label>
-    <p>Read our <a href="https://jacobfriedberg.github.io/pennysaved-privacypolicy-terms-conditions/" target="_blank">Privacy Policy & Terms</a>.</p>
-    <button id="submitBtn" class="button" disabled>I Agree</button>
-    <div id="confirmationMessage" class="confirmation">✅ Consent recorded. You may now proceed to use our services.</div>
-  </div>
+
+    <p id="timestamp" style="font-size: 0.9em; color: #666; margin-top: 2em;"></p>
+  </form>
 
   <script>
     const checkbox = document.getElementById('consentCheckbox');
+    const phoneInput = document.getElementById('phone');
     const button = document.getElementById('submitBtn');
     const confirmation = document.getElementById('confirmationMessage');
+    const confirmedPhone = document.getElementById('confirmedPhone');
+    const confirmedTime = document.getElementById('confirmedTime');
+    const timestamp = document.getElementById('timestamp');
 
-    checkbox.addEventListener('change', () => {
-      button.disabled = !checkbox.checked;
-    });
+    function validateForm() {
+      button.disabled = !(checkbox.checked && phoneInput.value.trim() !== '');
+    }
 
-    button.addEventListener('click', () => {
+    checkbox.addEventListener('change', validateForm);
+    phoneInput.addEventListener('input', validateForm);
+
+    document.getElementById('optin-form').addEventListener('submit', function(event) {
+      event.preventDefault();
+      const phone = phoneInput.value;
+      const now = new Date().toLocaleString();
+      confirmedPhone.textContent = phone;
+      confirmedTime.textContent = now;
       confirmation.style.display = 'block';
+      timestamp.textContent = "Consent recorded on: " + now;
     });
   </script>
 </body>
