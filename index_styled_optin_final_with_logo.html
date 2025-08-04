@@ -1,0 +1,110 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Penny Saved LLC – SMS Opt-In Consent</title>
+  <style>
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background-color: #12131C;
+      color: #FFFFFF;
+      margin: 0;
+      padding: 0;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+    }
+
+    .container {
+      background-color: #1B1D2A;
+      padding: 40px;
+      border-radius: 12px;
+      max-width: 600px;
+      width: 90%;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+    }
+
+    h1 {
+      color: #A5FF90;
+      font-size: 24px;
+    }
+
+    p {
+      font-size: 16px;
+      line-height: 1.6;
+    }
+
+    label {
+      display: block;
+      margin: 20px 0;
+      font-size: 15px;
+    }
+
+    input[type="checkbox"] {
+      margin-right: 10px;
+    }
+
+    a {
+      color: #A5FF90;
+      text-decoration: underline;
+    }
+
+    .button {
+      background-color: #A5FF90;
+      color: #12131C;
+      padding: 12px 24px;
+      border: none;
+      border-radius: 8px;
+      font-size: 16px;
+      cursor: pointer;
+      margin-top: 20px;
+      display: block;
+    }
+
+    .button:disabled {
+      background-color: #555;
+      cursor: not-allowed;
+    }
+
+    .confirmation {
+      display: none;
+      color: #A5FF90;
+      margin-top: 20px;
+      font-weight: bold;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>Penny Saved LLC – SMS Opt-In Consent</h1>
+    <p>
+      By checking the box below and clicking “I Agree,” you consent to receive recurring SMS messages
+      from Penny Saved LLC about your investments and account status. Message frequency varies. Message
+      and data rates may apply. Reply STOP to unsubscribe.
+    </p>
+    <label>
+      <input type="checkbox" id="consentCheckbox">
+      I agree to receive recurring SMS messages from Penny Saved LLC. Message and data rates may apply. Reply STOP to unsubscribe.
+    </label>
+    <p>Read our <a href="https://jacobfriedberg.github.io/pennysaved-privacypolicy-terms-conditions/" target="_blank">Privacy Policy & Terms</a>.</p>
+    <button id="submitBtn" class="button" disabled>I Agree</button>
+    <div id="confirmationMessage" class="confirmation">✅ Consent recorded. You may now proceed to use our services.</div>
+  </div>
+
+  <script>
+    const checkbox = document.getElementById('consentCheckbox');
+    const button = document.getElementById('submitBtn');
+    const confirmation = document.getElementById('confirmationMessage');
+
+    checkbox.addEventListener('change', () => {
+      button.disabled = !checkbox.checked;
+    });
+
+    button.addEventListener('click', () => {
+      confirmation.style.display = 'block';
+    });
+  </script>
+</body>
+</html>
